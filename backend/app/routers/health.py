@@ -4,6 +4,7 @@ from app.config import settings
 router = APIRouter(tags=["Health"])
 
 @router.get("/health")
+@router.get("/api/health")
 def health_check():
     return {
         "status": "healthy",
@@ -13,3 +14,4 @@ def health_check():
         "supabase_configured": bool(settings.SUPABASE_URL and settings.SUPABASE_ANON_KEY),
         "database": settings.DATABASE_URL.split("://")[0]
     }
+

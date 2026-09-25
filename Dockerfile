@@ -18,6 +18,7 @@ WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONPATH=/app/backend
 ENV PORT=8000
 
 # Install dependencies
@@ -33,4 +34,5 @@ COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
 EXPOSE 8000
 
 # Run uvicorn on $PORT (compatible with Render, Railway, Fly, Heroku, Docker)
-CMD uvicorn backend.app.main:app --host 0.0.0.0 --port ${PORT:-8000}
+CMD uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port ${PORT:-8000}
+
